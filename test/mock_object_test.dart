@@ -2,6 +2,7 @@
 
 import 'package:belajar_dart_unit_test/book.dart';
 import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
 @GenerateNiceMocks([MockSpec<BookRepository>()])
@@ -15,6 +16,7 @@ void main(){
 
     test("Save new book must success", (){
       bookService.save("1", "Tutorial Dart", 100000);
+      verify(bookRepository.save(Book("1", "Tutorial Dart", 100000))).called(1);
     });
 
   });
