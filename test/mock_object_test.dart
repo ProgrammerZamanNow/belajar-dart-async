@@ -19,5 +19,24 @@ void main(){
       verify(bookRepository.save(Book("1", "Tutorial Dart", 100000))).called(1);
     });
 
+    test("Find book by id not found", (){
+      expect((){
+        bookService.find("1");
+      }, throwsException);
+
+      verify(bookRepository.findById("1")).called(1);
+    });
+
+    test("Find book by id success", (){
+      when(bookRepository.findById("1"))
+          .thenReturn(Book("1", "Tutorial Dart", 100000));
+
+      var book = bookService.find("1");
+      expect(book, equals(Book("1", "Tutorial Dart", 100000)));
+
+      verify(bookRepository.findById("1")).called(1);
+
+    });
+
   });
 }
