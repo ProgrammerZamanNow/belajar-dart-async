@@ -1,0 +1,6 @@
+
+test_on: "mac-os"
+
+tags:
+  second:
+    skip: "Second tag is disabled"
